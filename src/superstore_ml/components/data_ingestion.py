@@ -42,6 +42,10 @@ class DataIngestion:
             train_data.to_csv(self.ingesion_config.train_data_path,index=False)
             test_data.to_csv(self.ingesion_config.test_data_path,index=False)
             logging.info("Data saved in train and test data path")
+            return(
+                self.ingesion_config.train_data_path,
+                self.ingesion_config.test_data_path
+            )
 
 
         except Exception as e:
