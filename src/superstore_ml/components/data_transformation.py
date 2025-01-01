@@ -12,12 +12,15 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder,OrdinalEncoder
 from src.superstore_ml.utils.utils import save_object
 
+
+
+
 @dataclass
 class DataTransformationConfig:
     preprocessor_obj_file_path=os.path.join("artifacts","preprocessor.pkl")
 
 
-class data_transformation:
+class DataTransformation:
     def __init__(self):
         self.data_tranformation_config=DataTransformationConfig()
 
@@ -57,10 +60,11 @@ class data_transformation:
 
         #preprocessor 
             preprocessor=ColumnTransformer(
-                transformers=[
+                steps=[
             ("num",num_pipeline,numerical_column),
             ("cat",cat_pipeline,categorical_column)
             ])
+            
             return preprocessor
 
 
