@@ -17,7 +17,7 @@ from src.superstore_ml.utils.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join('artifacts','preprocessor.pkl')
+    preprocessor_obj_file_path=os.path.join('artifatcts','preprocessor.pkl')
 
 
 class DataTransformation:
