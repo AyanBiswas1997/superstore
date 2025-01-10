@@ -5,6 +5,8 @@ on:
     branches: [ "master" ]
 
 
+
+
 jobs:
   deploy:
     name: Deploy
@@ -54,3 +56,4 @@ jobs:
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
+
