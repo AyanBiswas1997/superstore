@@ -41,4 +41,9 @@ jobs:
     # Step 6: Build, tag, and push the Docker image
     - name: Build, Tag, and Push Image to Amazon ECR
       env:
-        ECR_REGISTRY: ${{ steps.login-ecr.o
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: your-ecr-repository-name # Replace with your actual ECR repository name
+        IMAGE_TAG: latest
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
