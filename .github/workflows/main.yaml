@@ -1,4 +1,5 @@
-name: Build and push image to ECR
+name: Build and Push Image to ECR
+
 on:
   push:
     branches:
@@ -6,7 +7,7 @@ on:
 
 jobs:
   build-and-push-ecr-image:
-    name: Build image
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
     
     steps:
@@ -15,8 +16,8 @@ jobs:
 
     - name: Install Utilities
       run: |
-         sudo apt-get update 
-         sudo apt-get install -y jq unzip
+        sudo apt-get update 
+        sudo apt-get install -y jq unzip
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v3
@@ -32,11 +33,13 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
+    - name: Build, Tag, and Push Image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: samplesuperstore
+        ECR_REPOSITORY: diamonpriceprediction
         IMAGE_TAG: latest
       run: |
+        echo "Building Docker image..."
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        echo "Pushing Docker image to ECR..."
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
