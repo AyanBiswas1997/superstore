@@ -11,33 +11,34 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    # Step 1: Checkout the code
     - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Install Utilities
+    # Step 2: Install utilities (optional but useful for debugging)
+    - name: Install utilities
       run: |
-        sudo apt-get update 
+        sudo apt-get update
         sudo apt-get install -y jq unzip
 
+    # Step 3: Configure AWS credentials
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v3
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+    # Step 4: Debug AWS credentials (to verify they are working)
     - name: Debug AWS Credentials
       run: aws sts get-caller-identity
 
+    # Step 5: Log in to Amazon ECR
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    # Step 6: Build, tag, and push the Docker image
     - name: Build, Tag, and Push Image to Amazon ECR
       env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: samplesuperstore
-        IMAGE_TAG: latest
-      run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        ECR_REGISTRY: ${{ steps.login-ecr.o
