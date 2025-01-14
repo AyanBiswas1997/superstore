@@ -1,3 +1,4 @@
+
 from src.superstore_ml.pipelines.prediction_pipeline import CustomData, PredictPipeline
 from flask import Flask, request, jsonify, render_template
 
@@ -49,4 +50,3 @@ if __name__ == '__main__':
             
 
         
-
