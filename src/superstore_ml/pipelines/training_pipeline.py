@@ -1,6 +1,7 @@
 
 from src.superstore_ml.components.data_ingestion import DataIngestion
 from src.superstore_ml.components.data_transformation import DataTransformation
+from src.superstore_ml.components.model_evaluation import ModelEvaluation
 import os 
 import sys
 from src.superstore_ml.logger import logging
@@ -17,3 +18,7 @@ train_arr,test_arr=data_transformation.initialize_data_transformation(train_data
 
 model_trainer = ModelTrainer()
 model_trainer.initiate_model_training(train_arr, test_arr)
+
+
+model_eval_obj = ModelEvaluation()
+model_eval_obj.initiate_model_evaluation(train_arr,test_arr)

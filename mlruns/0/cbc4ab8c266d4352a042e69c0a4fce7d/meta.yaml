@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/superstore/mlruns/0/cbc4ab8c266d4352a042e69c0a4fce7d/artifacts
+end_time: 1736922392645
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cbc4ab8c266d4352a042e69c0a4fce7d
+run_name: nimble-snipe-222
+run_uuid: cbc4ab8c266d4352a042e69c0a4fce7d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736922384429
+status: 3
+tags: []
+user_id: AYAN
